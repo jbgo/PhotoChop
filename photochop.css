@@ -1,0 +1,29 @@
+html, body {
+height:100%; /* so mouseup events will be registered beneath all content */
+}
+#gamePanel {
+	margin:50px;
+}
+table {
+	border-collapse:collapse;
+}
+td {
+	color:#999;
+	padding:0;
+	width:50px;
+	height:50px;
+/*	border:1px solid #333; */
+}
+.dragTarget {
+	border:2px dashed #333;
+	background:#fff;
+}
+
+td.hover {
+	cursor:move;
+	opacity:0.76;
+}
+
+td.dropTarget {
+	background:#fec;
+}
