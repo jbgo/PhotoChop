@@ -103,7 +103,6 @@ function PhotoChop(gamePanelSelector, imageArray, options) {
 			var t = $(this);
 			
 			dragEnabled = true;
-			
 			dragTarget = $('<div></div>').append(t.html())
 										 .addClass(opts.dragTargetClass)
 										 .css({
@@ -112,7 +111,8 @@ function PhotoChop(gamePanelSelector, imageArray, options) {
 										 	'left' : e.pageX - (opts.blockWidth / 2) + 'px',
 										 	'width' : t.css('width'),
 										 	'height' : t.css('height'),
-										 	'background' : t.css('background')
+										 	'background' : t.css('background'),
+										 	'background-position' : t.css('background-position')
 										 });
 	
 			$(document.body).disableTextSelect()
@@ -158,6 +158,7 @@ function PhotoChop(gamePanelSelector, imageArray, options) {
 	function windowMouseup() {
 		if (dragEnabled) {
 			$getCellObj(dropCell).css('background', dragTarget.css('background'));
+			$getCellObj(dropCell).css('background-position', dragTarget.css('background-position'));
 			dragTarget.remove();
 			$(document.body).enableTextSelect();
 			
@@ -233,13 +234,16 @@ function PhotoChop(gamePanelSelector, imageArray, options) {
 			temp = $c1.html(),
 			tempId = $c1.attr('id'),
 			tempBg = $c1.css('background');
+			tempBgp = $c1.css('background-position');
 		
 		$c1.html($c2.html());
 		$c1.attr('id', $c2.attr('id'));
 		$c1.css('background', $c2.css('background'));
+		$c1.css('background-position', $c2.css('background-position'));
 		$c2.html(temp);
 		$c2.attr('id', tempId);
 		$c2.css('background', tempBg);
+		$c2.css('background-position', tempBgp);
 		
 		$c1.removeClass(opts.dropTargetClass);
 		$c2.addClass(opts.dropTargetClass);
