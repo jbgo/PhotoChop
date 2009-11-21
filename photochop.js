@@ -174,23 +174,17 @@ function PhotoChop(gamePanelSelector, imageArray, options) {
 	
 	function bottom_y(cell, e) {
 		cell = $getCellObj(cell);
-		if ($.browser.safari) // safari doesn't like empty table cells
-			// it incorrectly reports the center of the table cell as its top
-			return cell.offset().top + cell.outerHeight() - (opts.blockHeight / 2);
-		return cell.offset().top + cell.outerHeight();
+		return cell.offset().top + opts.blockHeight;
 	}
 	
 	function top_y(cell) {
 		cell = $getCellObj(cell);
-		if ($.browser.safari) // safari doesn't like empty table cells
-			// it incorrectly reports the center of the table cell as its top
-			return cell.offset().top - (opts.blockHeight / 2);
 		return cell.offset().top;
 	}
 	
 	function right_x(cell) {
 		cell = $getCellObj(cell);
-		return cell.offset().left + cell.outerWidth();
+		return cell.offset().left + opts.blockWidth;
 	}
 	
 	function left_x(cell) {
