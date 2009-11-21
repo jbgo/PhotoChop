@@ -259,11 +259,13 @@ function PhotoChop(gamePanelSelector, imageArray, options) {
 		$(offsetEl).append(div);
 	}
 	
-var highlightsVisible = false;
+var highlightsVisible = false,
+	isHighlighting = false;
 
 	function clearHighlights() {
 		$('td div', $table).fadeOut(function(){
 			$(this).remove();
+			isHighlighting = false;
 		});
 		highlightsVisible = false;
 		$(window).unbind('mouseup', clearHighlights);
@@ -278,6 +280,11 @@ var highlightsVisible = false;
 	this.highlight = function() {
 		var count = 0, 
 			id;
+		
+		if (isHighlighting)
+			return;
+		else
+			isHighlighting = true;
 			
 		if (highlightsVisible)
 			clearHighlightsNow();
@@ -324,11 +331,10 @@ var highlightsVisible = false;
 	var preview = $('<div/>'),
 		isPeeking = false;
 	this.peek = function() {
-		if (isPeeking) {
+		if (isPeeking)
 			return;
-		} else {
+		else
 			isPeeking = true;
-		}
 		
 		preview.css({
 			'position' : 'absolute',
