@@ -321,8 +321,15 @@ var highlightsVisible = false;
 	}
 
 // photo preview
-	var preview = $('<div/>');
+	var preview = $('<div/>'),
+		isPeeking = false;
 	this.peek = function() {
+		if (isPeeking) {
+			return;
+		} else {
+			isPeeking = true;
+		}
+		
 		preview.css({
 			'position' : 'absolute',
 			'top' : $table.offset().top - 5 + 'px',
@@ -342,6 +349,7 @@ var highlightsVisible = false;
 	function unpeek() {
 		preview.fadeOut(function(){
 			preview.remove();
+			isPeeking = false;
 		});
 		$(window).unbind('mouseup', unpeek);
 		$table.fadeTo('normal', 1.0);
